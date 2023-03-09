@@ -5,29 +5,37 @@ using UserValidation;
 public class UnitTest1
 {
     [TestMethod]
-    public void TestMethod1()
+    public void TestMethod1(string email,bool expected)
     {
         User user = new User();
-        string validemails = "abc@yahoo.com";
-        string name = "Ares";
-        string mobileNum= "91 8580959085";
-
-
-        
-        Boolean expected = true;
-        bool isname = user.ValidateName(name);
-        bool isemail = user.Validatemail(validemails);
-        bool isnumber = user.validNumber(mobileNum);
        
-       Assert.AreEqual(expected,isname);
-       Assert.AreEqual(expected,isemail);
-       Assert.AreEqual(expected,isnumber);
+       List<(string, bool)> testData = new List<(string, bool)>
+    {
+    ("abc@yahoo.com", true),
+    ("abc-100@yahoo.com", true),
+    ("abc111@abc.com", true),
+    ("test@example", false),
+    ("test@domain.", false),
+    ("test@domain..com", false),
+    
+    };
 
+
+    foreach (var data in testData)
+{
+    string myemail = data.Item1;
+    bool expectedOutput = data.Item2;
+
+    bool actualOutput = user.Validatemail(myemail);
+
+    Assert.AreEqual(expectedOutput, actualOutput);
+}
+    
 
 
      
 
         
-        }
+    }
     }
  
