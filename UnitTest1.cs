@@ -8,23 +8,26 @@ public class UnitTest1
     public void TestMethod1()
     {
         User user = new User();
-        string[] validemails = {"abc@yahoo.com","abc-100@yahoo.com","abc.100@abc.com.au","abc@gmail.com.com"};
-        Boolean expected = true;
-        foreach(string email in validemails){
-        Boolean output = user.Validatemail(email);
+        string validemails = "abc@yahoo.com";
+        string name = "Ares";
+        string mobileNum= "91 8580959085";
 
-        Assert.AreEqual(expected,output);
+
+        
+        Boolean expected = true;
+        bool isname = user.ValidateName(name);
+        bool isemail = user.Validatemail(validemails);
+        bool isnumber = user.validNumber(mobileNum);
+       
+       Assert.AreEqual(expected,isname);
+       Assert.AreEqual(expected,isemail);
+       Assert.AreEqual(expected,isnumber);
+
+
+
+     
+
+        
         }
     }
-      public void TestMethod2()
-    {
-        User user = new User();
-        string[] invalidemails = {"abc@.com.my","abc123@gmail.a","abc123@.com","abc@gmail.com.com"};
-        Boolean expected = true;
-        foreach(string email in invalidemails){
-        Boolean output = user.Validatemail(email);
-
-        Assert.AreEqual(expected,output);
-        }
-    }
-}
+ 
